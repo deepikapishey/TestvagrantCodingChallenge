@@ -1,0 +1,54 @@
+import java.util.*;
+import java.io.*;
+import java.util.Arrays;
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the number of products");
+        int n=sc.nextInt();
+        System.out.println("Enter the products");
+        String[] p=new String[n];
+        for(int i=0;i<n;i++)
+        p[i]=sc.nextLine();
+        System.out.println("Enter the unit price");
+        double up[]=new double[n];
+        for(int i=0;i<n;i++)
+        up[i]=sc.nextDouble();
+        System.out.println("Enter the gst");
+        double gst[]=new double[n];
+        for(int i=0;i<n;i++)
+        gst[i]=sc.nextDouble();
+        System.out.println("Enter the quantity");
+        double q[]=new double[n];
+        for(int i=0;i<n;i++)
+        q[i]=sc.nextDouble();;
+        double tp[]=new double[n];
+        double ga[]=new double[n];
+        double ta[]=new double[n];
+        double sum=0.0;int index=0;
+        for(int i=0;i<n;i++)
+        {
+            if(up[i]>=500)
+            up[i]=up[i]-((5.0/100.0)*up[i]);
+        }
+        for(int i=0;i<n;i++)
+        {
+            tp[i]=up[i]*q[i];
+            ga[i]=((gst[i]/100.0)*tp[i]);
+            sum=sum+(tp[i]+ga[i]);
+        }
+        double max=ga[0];
+        for(int i=1;i<n;i++)
+        {
+            if(ga[i]>max)
+            {
+            max=ga[i];
+            index=i;
+            }
+        }
+        System.out.println("Product for which we paid the max gst is "+p[index]);
+        System.out.println("Total amount="+sum);
+    }
+}
